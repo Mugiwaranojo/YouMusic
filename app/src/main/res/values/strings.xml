@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">YouMusic</string>
+
+    <string name="app_description">Télécharger vos mp3 à partir de liens youtube ou de vos playlists.</string>
+    <string name="input_hint_linkyoutube">entrer ici un lien youtube</string>
+    <string name="button_download">Télécharger</string>
+    <string name="myplaylistsyoutube">Mes playlists Youtube :</string>
+</resources>

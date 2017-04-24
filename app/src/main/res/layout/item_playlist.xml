@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/imageViewItemPlaylistThumbnails"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_weight="10"
+        android:src="@mipmap/ic_launcher" />
+
+    <TextView
+        android:id="@+id/textViewItemPlaylistDescription"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:layout_weight="70"
+        android:textColor="#000000"
+        android:textSize="20dp"
+        android:paddingLeft="20dp"
+        android:text="TextView" />
+    <TextView
+        android:id="@+id/textViewItemPlaylistNombreVideos"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:gravity="right|center_vertical"
+        android:layout_weight="30"
+        android:textColor="#FF0000"
+        android:textSize="10dp"
+        android:paddingRight="10dp"
+        android:text="TextView" />
+</LinearLayout>
