@@ -57,7 +57,6 @@ public class Music {
     public static String titleToFileName(String title){
         String fileName = (title+".mp3").replaceAll("/", Matcher.quoteReplacement("_"));
         fileName = fileName.replaceAll("#", Matcher.quoteReplacement("-"));
-        fileName = fileName.replaceAll(".", Matcher.quoteReplacement("_"));
         return  fileName;
     }
 
