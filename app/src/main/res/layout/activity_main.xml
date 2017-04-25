@@ -10,7 +10,8 @@
         android:id="@+id/PanelTop"
         android:orientation="horizontal"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        app:layout_constraintVertical_weight="20"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         android:padding="20dp">
@@ -31,32 +32,36 @@
 
     <fragment
         android:id="@+id/fragment_downladlink"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        app:layout_constraintVertical_weight="40"
         android:name="com.example.mugiwara.youtubedownloads.fragment.DownloadLinkFragment"
         tools:layout="@layout/fragment_downladlink"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/PanelTop">
+        app:layout_constraintTop_toBottomOf="@+id/PanelTop">
     </fragment>
 
     <fragment
         android:id="@+id/fragment_youtubeplaylist"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        app:layout_constraintVertical_weight="40"
         android:name="com.example.mugiwara.youtubedownloads.fragment.YoutubePlaylistsFragment"
         tools:layout="@layout/fragment_youtubeplaylists"
         app:layout_constraintTop_toBottomOf="@+id/fragment_downladlink"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent">
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
     </fragment>
 
     <fragment
         android:id="@+id/fragment_youtubeplaylistContent"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
         tools:layout="@layout/fragment_playlistsitems"
         android:name="com.example.mugiwara.youtubedownloads.fragment.YoutubePlaylistContentFragment"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
     </fragment>
 </android.support.constraint.ConstraintLayout>
