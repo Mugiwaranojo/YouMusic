@@ -8,20 +8,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.mugiwara.youtubedownloads.R;
 import com.example.mugiwara.youtubedownloads.fetcher.IOnPlaylistContentRequestListener;
 import com.example.mugiwara.youtubedownloads.fetcher.YoutubeInMP3Download;
-import com.example.mugiwara.youtubedownloads.model.PlaylistContentAdapter;
 import com.google.api.services.youtube.model.Playlist;
 import com.google.api.services.youtube.model.PlaylistItem;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Mugiwara on 23/04/2017.
@@ -49,6 +45,7 @@ public class YoutubePlaylistContentFragment extends Fragment implements IOnPlayl
         buttonDownloadAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                buttonDownloadAll.setEnabled(false);
                 YoutubeInMP3Download.downloadAllPlaylist(contentPlaylist, getActivity());
             }
         });
@@ -70,6 +67,7 @@ public class YoutubePlaylistContentFragment extends Fragment implements IOnPlayl
         textViewTitle.setText(currentPlaylist.getSnippet().getTitle());
         adapter = new PlaylistContentAdapter(getActivity(), contentPlaylist);
         listViewPlaylistContent.setAdapter(adapter);
+        buttonDownloadAll.setEnabled(true);
     }
 
     @Override

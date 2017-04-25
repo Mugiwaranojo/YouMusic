@@ -1,4 +1,4 @@
-package com.example.mugiwara.youtubedownloads.model;
+package com.example.mugiwara.youtubedownloads.fragment;
 
 import android.app.Activity;
 import android.app.DownloadManager;
@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.CheckedTextView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -21,6 +22,7 @@ import com.example.mugiwara.youtubedownloads.fetcher.DownloadJsonTask;
 import com.example.mugiwara.youtubedownloads.fetcher.IOnRequestJsonListener;
 import com.example.mugiwara.youtubedownloads.fetcher.YoutubeInMP3Download;
 import com.example.mugiwara.youtubedownloads.fragment.DownloadLinkFragment;
+import com.example.mugiwara.youtubedownloads.model.Music;
 import com.google.api.services.youtube.model.PlaylistItem;
 
 import org.json.JSONException;
@@ -66,7 +68,7 @@ public class PlaylistContentAdapter extends BaseAdapter {
         View v = inflater.inflate(R.layout.item_playlistcontent, null);
         final PlaylistItem item = playlistItems.get(position);
 
-        TextView textView = (TextView) v.findViewById(R.id.textViewItemPlaylistContentTitle);
+        CheckedTextView textView = (CheckedTextView) v.findViewById(R.id.textViewItemPlaylistContentTitle);
         textView.setText(item.getSnippet().getTitle());
 
         if(item.getSnippet().getThumbnails()!=null) {
@@ -75,13 +77,22 @@ public class PlaylistContentAdapter extends BaseAdapter {
             imagesTask.execute(item.getSnippet().getThumbnails().getDefault().getUrl());
         }
 
-        ImageButton imageButton = (ImageButton) v.findViewById(R.id.imageButtonDowloadItem);
+        final ImageButton imageButton = (ImageButton) v.findViewById(R.id.imageButtonDowloadItem);
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                imageButton.setEnabled(false);
                 YoutubeInMP3Download.downloandFromItem(item, context);
             }
         });
+        String path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getPath();
+        if(Music.fileExist(path, item.getSnippet().getTitle())){
+            textView.setChecked(true);
+            imageButton.setEnabled(false);
+        }else{
+            textView.setChecked(false);
+            imageButton.setEnabled(true);
+        }
         return v;
     }
 }

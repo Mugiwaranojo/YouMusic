@@ -11,18 +11,24 @@
         android:layout_height="60dp"
         android:src="@mipmap/ic_launcher" />
 
-    <TextView
+
+    <CheckedTextView
         android:id="@+id/textViewItemPlaylistContentTitle"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:gravity="center_vertical"
         android:paddingLeft="20dp"
-        android:text="TextView" />
+        android:text="TextView"
+        android:checkMark="?android:attr/listChoiceIndicatorMultiple"
+        android:checkMarkTint="#F00"
+        android:checked="false"
+        />
 
     <ImageButton
         android:id="@+id/imageButtonDowloadItem"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:src="@android:drawable/stat_sys_download" />
+        android:src="@android:drawable/stat_sys_download"
+        />
 </LinearLayout>

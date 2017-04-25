@@ -1,4 +1,4 @@
-package com.example.mugiwara.youtubedownloads.model;
+package com.example.mugiwara.youtubedownloads.fragment;
 
 import android.app.Activity;
 import android.content.Context;

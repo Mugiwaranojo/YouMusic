@@ -13,7 +13,9 @@ import com.google.api.services.youtube.model.PlaylistItem;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
 import java.util.ArrayList;
+import java.util.regex.Matcher;
 
 import static android.content.Context.DOWNLOAD_SERVICE;
 
@@ -72,7 +74,12 @@ public class YoutubeInMP3Download implements IOnRequestJsonListener {
         Uri music_uri = Uri.parse(m.getLink());
         DownloadManager downloadManager = (DownloadManager) context.getSystemService(DOWNLOAD_SERVICE);
         DownloadManager.Request request = new DownloadManager.Request(music_uri);
-        request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, m.getTitle()+".mp3");
+        String fileName = m.titleToFileName();
+        request.setMimeType("audio/mpeg");
+        request.setTitle(fileName);
+        request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_MOBILE | DownloadManager.Request.NETWORK_WIFI);
+        request.setAllowedOverRoaming(false);
+        request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, fileName);
         //Enqueue a new download and same the referenceId
         MainActivity.downloadReference = downloadManager.enqueue(request);
     }
@@ -89,18 +96,16 @@ public class YoutubeInMP3Download implements IOnRequestJsonListener {
 
     public static void downloadAllPlaylist(final ArrayList<PlaylistItem> playlistItems, final Activity context){
         final Activity currentContext= context;
+        Toast.makeText(currentContext, "Conversion de "+playlistItems.size()+" vidéos", Toast.LENGTH_LONG).show();
         context.runOnUiThread(new Runnable() {
             public void run() {
-                Toast.makeText(currentContext, "Conversion de "+playlistItems.size()+" vidéos", Toast.LENGTH_LONG).show();
-               for (PlaylistItem item: playlistItems){
-                   YoutubeInMP3Download instance = new YoutubeInMP3Download(currentContext);
-                   instance.convertYoutubePlaylistItem(item);
-                   try {
-                       Thread.sleep(300);
-                   } catch (InterruptedException e) {
-                       e.printStackTrace();
-                   }
-               }
+                for (PlaylistItem item: playlistItems){
+                    String path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getPath();
+                    if(!Music.fileExist(path, item.getSnippet().getTitle())) {
+                        YoutubeInMP3Download instance = new YoutubeInMP3Download(currentContext);
+                        instance.convertYoutubePlaylistItem(item);
+                    }
+                }
             }
         });
     }

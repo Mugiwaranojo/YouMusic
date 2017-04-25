@@ -10,9 +10,7 @@ import android.widget.ListView;
 
 import com.example.mugiwara.youtubedownloads.R;
 import com.example.mugiwara.youtubedownloads.fetcher.IOnPlaylistsRequestListener;
-import com.example.mugiwara.youtubedownloads.model.PlaylistAdapter;
 import com.google.api.services.youtube.model.Playlist;
-import com.google.api.services.youtube.model.PlaylistItem;
 
 import java.util.ArrayList;
 

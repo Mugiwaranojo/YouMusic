@@ -188,6 +188,7 @@ public class MainActivity extends Activity implements IOnPlaylistSelected {
             //check if the broadcast message is for our Enqueued download
             long referenceId = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1);
             if (downloadReference == referenceId) {
+                playlistContentFragment.refresh();
                 Toast.makeText(getApplicationContext(), "Téléchargement terminé ", Toast.LENGTH_LONG).show();
             }
         }
